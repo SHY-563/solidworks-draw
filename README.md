@@ -165,6 +165,15 @@ python utils/similarity.py --type shaft --dims diameter=30 length=200
 
 ---
 
+## Contributing & Contact
+
+Feedback and contributions are welcome! If you'd like to discuss improvements, share design
+rules, contribute new part templates, or help optimize this skill, feel free to reach out:
+
+📧 **2106105507@qq.com**
+
+---
+
 ## License
 
 [MIT](LICENSE) © 2026 SHY-563
