@@ -165,12 +165,17 @@ python utils/similarity.py --type shaft --dims diameter=30 length=200
 
 ---
 
-## Contributing & Contact
+## Contributing & Community
 
-Feedback and contributions are welcome! If you'd like to discuss improvements, share design
-rules, contribute new part templates, or help optimize this skill, feel free to reach out:
+Feedback and contributions are very welcome! If you'd like to discuss improvements, share design
+rules, contribute new part templates, or help optimize this skill, please use the project's
+built-in channels:
 
-📧 **2106105507@qq.com**
+- 💬 **[Discussions](https://github.com/SHY-563/solidworks-draw/discussions)** — questions, ideas,
+  and general conversation about the skill.
+- 🐛 **[Issues](https://github.com/SHY-563/solidworks-draw/issues)** — bug reports and concrete
+  feature requests.
+- 🔀 **Pull Requests** — new templates (flange, gear, …), rule/material additions, and fixes.
 
 ---
 
