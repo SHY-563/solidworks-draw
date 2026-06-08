@@ -1,0 +1,181 @@
+# ============================================
+# 机械零件设计规则库
+# 用于从已知参数推导未知参数
+# 单位：mm, MPa, °
+# ============================================
+
+# ====================
+# 轴类设计规则
+# ====================
+shaft:
+  description: "传动轴/阶梯轴设计规则"
+
+  # 轴径初步估算（按扭转强度）
+  diameter_estimate:
+    formula: "d >= A * (P/n)^(1/3)"
+    description: "P=功率kW, n=转速rpm, A=材料系数"
+    A_values:
+      "45钢": 118
+      "40Cr": 108
+      "Q235": 135
+
+  # 各段直径关系
+  step_ratio:
+    shoulder_height: "0.07d + 3~5mm"        # 轴肩高度
+    bearing_journal: "取标准轴承内径（5的倍数）"
+    seal_position_diameter: "比轴承位小2~5mm"
+
+  # 键槽规则
+  keyway:
+    width:            # 键宽 b (GB/T 1096)
+      6: "适用于 d=20~22"
+      8: "适用于 d=22~30"
+      10: "适用于 d=30~38"
+      12: "适用于 d=38~44"
+      14: "适用于 d=44~50"
+      16: "适用于 d=50~58"
+      18: "适用于 d=58~65"
+      20: "适用于 d=65~75"
+      22: "适用于 d=75~85"
+    depth_shaft: "b/2（轴上槽深）"
+    depth_hub: "b/2 + 0.5~1（轮毂槽深）"
+    length: "1.5d ~ 2.5d（通常取1.6~2.0倍轴径）"
+
+  # 倒角与圆角
+  chamfer: "C1（d<50）, C1.5（d=50~80）, C2（d>80）"
+  fillet_shaft: "R0.5~R1（一般）, R2~R3（应力集中处）"
+
+  # 中心孔 (GB/T 145)
+  center_hole:
+    type_A: "不带护锥，用于一般轴"
+    type_B: "带护锥，用于重要轴"
+    d2: "中心孔直径 ≈ d*0.1（d为轴端直径）"
+
+  # 卡环槽 (GB/T 894)
+  retaining_ring:
+    groove_width: "查表按轴径"
+    groove_depth: "0.05d + 0.5"
+
+  # 轴公差配合
+  tolerance:
+    bearing_fit: "js6 或 k6（内圈与轴配合）"
+    gear_fit: "H7/k6（过渡配合）"
+    coupling_fit: "H7/js6"
+    general: "h11（非配合面）"
+
+  # 长径比约束
+  slenderness:
+    max: 15    # 最大长径比（超出需增加中间支承）
+    typical: "5~10"
+
+# ====================
+# 活塞类设计规则
+# ====================
+piston:
+  description: "往复式压缩机/内燃机活塞设计规则"
+
+  # 基本尺寸关系
+  proportions:
+    skirt_length: "0.6~0.8 * D"              # 裙部长度
+    total_length: "0.8~1.2 * D"              # 总长
+    pin_diameter: "0.25~0.30 * D"            # 活塞销直径
+    crown_thickness: "0.08~0.12 * D"         # 顶部厚度
+
+  # 活塞环槽
+  ring_groove:
+    count_by_pressure:
+      low: "P < 1.0 MPa → 2 道气环"
+      medium: "1.0 ≤ P < 3.0 MPa → 3 道气环"
+      high: "P ≥ 3.0 MPa → 4 道气环（含1道油环）"
+    width: "2~4mm（按缸径查GB/T 1149）"
+    depth: "环径向厚度 + 0.5mm"
+    spacing: "1.2 * 环槽宽度"
+    top_land_height: "0.08~0.12 * D"         # 一环岸高度
+
+  # 活塞销孔
+  pin_hole:
+    offset: "0.5~1.0mm 偏向推力面（减小敲缸）"
+    fit_with_pin: "过渡配合 H7/k6"
+    retaining_groove: "卡环槽宽1.1~1.5mm"
+
+  # 间隙
+  clearance:
+    cylinder: "0.001~0.002 * D（冷态）"
+    ring_groove_axial: "0.04~0.08mm"
+    ring_end_gap: "0.003~0.005 * D"
+
+  # 裙部型线
+  skirt_profile: "椭圆或中凸形，椭圆度0.2~0.5mm"
+
+# ====================
+# 法兰盘设计规则
+# ====================
+flange:
+  description: "管道法兰/设备法兰设计规则"
+
+  bolt_circle: "D_pcd = D_flange - 2 * bolt_margin"
+  bolt_margin: "1.5d_bolt（螺栓孔到法兰边缘距离）"
+  bolt_count:
+    formula: "n = ceil(π * D_pcd / (4 * d_bolt))"
+    min: 4
+  flange_thickness: "0.05 * D_flange + 3mm（按压力查GB/T 9119）"
+  hub_length: "0.8 * flange_thickness ~ 1.2 * flange_thickness"
+  gasket_groove_depth: "1.5~2mm（按垫片类型）"
+  chamfer: "1.5×45°（螺栓孔两端）"
+
+# ====================
+# 齿轮设计规则
+# ====================
+gear:
+  description: "渐开线圆柱齿轮基本规则"
+
+  module_standard: [1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10]  # 第一系列
+  pressure_angle: 20  # 标准压力角 °
+  addendum: "1.0 * m"
+  dedendum: "1.25 * m"
+  tip_clearance: "0.25 * m"
+  hub_diameter: "1.6~1.8 * d_shaft"
+  hub_length: "1.2~1.5 * d_shaft"
+  web_thickness: "0.25~0.35 * b（齿宽）"
+  rim_thickness: "2.5~3.5 * m"
+  lightening_holes:
+    count: "4~6（偶数均布）"
+    diameter: "0.15~0.25 * D_pitch"
+    position: "PCD ≈ 0.6 * D_pitch"
+
+# ====================
+# 通用设计规则
+# ====================
+general:
+  # 铸造零件
+  casting:
+    min_wall_thickness: "max(4mm, D/50 + 2.5)"
+    draft_angle: "1°~3°（外表面）, 3°~5°（内表面）"
+    fillet_radius: "0.3~0.5 * wall_thickness（铸造圆角）"
+    rib_thickness: "0.7~0.8 * wall_thickness"
+
+  # 螺栓和螺纹
+  bolt:
+    min_spacing: "4 * d_bolt"
+    edge_distance: "1.5 * d_bolt"
+    counterbore_depth: "d_bolt * 1.5（钢件）, d_bolt * 2.0（铸铁）"
+    thread_engagement: "1.5d（钢）, 2.0d（铸铁）, 2.5d（铝合金）"
+
+  # 密封槽
+  o_ring_groove:
+    groove_width: "1.2~1.3 * cross_section"
+    groove_depth: "0.7~0.75 * cross_section"
+    surface_finish: "Ra 1.6~3.2（动密封）, Ra 3.2~6.3（静密封）"
+
+  # 倒角与圆角
+  chamfer_default: "1×45°（一般边角）"
+  fillet_machined: "R0.5~R1（机加工过渡）"
+
+  # 粗糙度默认值
+  roughness:
+    bearing_journal: "Ra 0.8"
+    seal_surface: "Ra 0.8~1.6"
+    gear_tooth: "Ra 1.6"
+    general_machined: "Ra 3.2"
+    cast_surface: "Ra 12.5~25"
+    bolt_hole: "Ra 6.3"

@@ -1,0 +1,205 @@
+# ============================================
+# 常用工程材料数据库
+# 单位：密度(g/cm³), 强度(MPa), 硬度(HB/HRC)
+# ============================================
+
+# ====================
+# 碳钢与合金钢
+# ====================
+steels:
+  Q235:
+    name: "Q235A 碳素结构钢"
+    density: 7.85
+    yield_strength: 235
+    tensile_strength: 375
+    hardness: "HB 110~160"
+    usage: "一般结构件、焊接件、支架"
+    machinability: "良好"
+    weldability: "优秀"
+
+  "45钢":
+    name: "45# 优质碳素结构钢"
+    density: 7.85
+    yield_strength: 355
+    tensile_strength: 600
+    hardness: "HB 170~220（正火）, HRC 45~55（调质+表面淬火）"
+    usage: "轴类、齿轮、连杆、曲轴"
+    machinability: "良好"
+    heat_treatment: "调质(淬火+高温回火) 最常用"
+
+  "40Cr":
+    name: "40Cr 合金结构钢"
+    density: 7.82
+    yield_strength: 785
+    tensile_strength: 980
+    hardness: "HB 217~269（调质）, HRC 48~55（表面淬火）"
+    usage: "重要轴类、齿轮、连杆螺栓"
+    machinability: "中等"
+    note: "比45钢强度高30%，用于重要受力件"
+
+  "20CrMnTi":
+    name: "20CrMnTi 渗碳钢"
+    density: 7.80
+    yield_strength: 835
+    tensile_strength: 1080
+    hardness: "表面 HRC 58~62（渗碳淬火）, 心部 HRC 30~45"
+    usage: "汽车齿轮、重载齿轮"
+    machinability: "中等"
+
+  "42CrMo":
+    name: "42CrMo 合金结构钢"
+    density: 7.85
+    yield_strength: 930
+    tensile_strength: 1080
+    hardness: "HB 217~280"
+    usage: "大截面齿轮、重型轴、高压容器螺栓"
+    note: "淬透性好，适合大截面零件"
+
+# ====================
+# 不锈钢
+# ====================
+stainless_steels:
+  "304":
+    name: "06Cr19Ni10 奥氏体不锈钢"
+    density: 7.93
+    yield_strength: 205
+    tensile_strength: 520
+    hardness: "HB ≤187"
+    usage: "食品设备、化工容器、装饰件"
+    corrosion_resistance: "优秀"
+    machinability: "较差（粘刀）"
+
+  "316L":
+    name: "022Cr17Ni12Mo2 超低碳奥氏体不锈钢"
+    density: 8.00
+    yield_strength: 175
+    tensile_strength: 480
+    hardness: "HB ≤187"
+    usage: "海洋环境、医疗设备、强腐蚀介质"
+    corrosion_resistance: "极优秀（含Mo抗点蚀）"
+
+  "2Cr13":
+    name: "20Cr13 马氏体不锈钢"
+    density: 7.75
+    yield_strength: 440
+    tensile_strength: 635
+    hardness: "HB 192~235, 可淬硬至 HRC 50+"
+    usage: "阀杆、泵轴、蒸汽轮机叶片"
+    machinability: "中等"
+
+# ====================
+# 铸铁
+# ====================
+cast_irons:
+  HT250:
+    name: "HT250 灰铸铁"
+    density: 7.20
+    tensile_strength: 250
+    hardness: "HB 180~250"
+    usage: "机床床身、发动机缸体、压缩机曲轴箱"
+    damping: "优秀（减振性好）"
+    weldability: "差"
+    note: "脆性材料，壁厚均匀设计"
+
+  QT400:
+    name: "QT400-15 球墨铸铁"
+    density: 7.10
+    tensile_strength: 400
+    yield_strength: 250
+    elongation: 15
+    hardness: "HB 130~180"
+    usage: "汽车底盘件、压缩机壳体、管件"
+    note: "强度接近钢，可部分替代铸钢"
+
+  QT700:
+    name: "QT700-2 球墨铸铁"
+    density: 7.20
+    tensile_strength: 700
+    yield_strength: 420
+    elongation: 2
+    hardness: "HB 225~305"
+    usage: "曲轴、凸轮轴、高强度齿轮"
+    note: "可感应淬火，表面硬度可达HRC55"
+
+# ====================
+# 铝合金
+# ====================
+aluminum_alloys:
+  "6061":
+    name: "6061-T6 变形铝合金"
+    density: 2.70
+    yield_strength: 240
+    tensile_strength: 290
+    hardness: "HB 95"
+    usage: "航空结构件、自行车架、模具"
+    corrosion_resistance: "良好"
+    anodizing: "可阳极氧化"
+
+  "7075":
+    name: "7075-T6 超硬铝合金"
+    density: 2.81
+    yield_strength: 503
+    tensile_strength: 572
+    hardness: "HB 150"
+    usage: "航空高强度件、军工零件"
+    note: "强度接近钢材，但焊接性差"
+
+  ZL101:
+    name: "ZL101 铸造铝合金"
+    density: 2.68
+    tensile_strength: 195
+    hardness: "HB 60~70"
+    usage: "薄壁壳体、箱体、仪器外壳"
+    castability: "优秀"
+
+# ====================
+# 铜合金
+# ====================
+copper_alloys:
+  H62:
+    name: "H62 黄铜"
+    density: 8.50
+    tensile_strength: 330
+    hardness: "HB 56~90"
+    usage: "密封垫片、阀体、装饰件"
+
+  ZCuSn10P1:
+    name: "ZCuSn10P1 锡青铜"
+    density: 8.76
+    tensile_strength: 250
+    hardness: "HB 80~90"
+    usage: "滑动轴承、蜗轮、轴套"
+    note: "耐磨性好，用于轴承和重型蜗轮"
+
+# ====================
+# 工程塑料
+# ====================
+plastics:
+  PTFE:
+    name: "聚四氟乙烯（铁氟龙）"
+    density: 2.20
+    tensile_strength: 25
+    max_temp: 260
+    usage: "密封件、垫片、无油润滑轴承"
+    friction_coefficient: 0.04  # 极低
+
+  POM:
+    name: "聚甲醛（赛钢）"
+    density: 1.41
+    tensile_strength: 70
+    hardness: "HRR 120"
+    usage: "精密齿轮、轴承保持架、滑块"
+    note: "尺寸稳定性好，可替代小型金属件"
+
+# ====================
+# 材料选择建议
+# ====================
+selection_guide:
+  shaft_general: ["45钢", "40Cr"]
+  shaft_heavy_duty: ["42CrMo", "40CrNiMo"]
+  gear_small: ["45钢", "40Cr"]
+  gear_automotive: ["20CrMnTi"]
+  housing_cast: ["HT250", "QT400"]
+  housing_lightweight: ["ZL101", "6061"]
+  corrosive_env: ["304", "316L"]
+  high_temp: ["2Cr13", "316L"]
